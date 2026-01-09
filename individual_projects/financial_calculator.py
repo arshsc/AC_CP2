@@ -7,34 +7,72 @@ def starting_menu():
     choice = input("Enter the number to select an option\n\n1. Savings Time Calculator\n\n2. Compound Interest Calculator\n\n3. Budget Allocator\n\n4. Sales Price Calculator\n\n5. Tip Calculator\n\n").strip().lower()
     return choice
 
-# Save for a goal
+# save for a goal
 def save_goal():
-    goal_amount = input("\n\nWhat amount are you saving to: ").strip().lower()
-    contributing = input("How often are you contributing?\n\n1. Weekly\n\n2. Monthly\n\n").strip().lower()
-    amount_contributing = input("\n\nHow much are you contributing each time: ").strip().lower()
+    goal_amount = float(input("\n\nWhat amount are you saving to: "))
+    contributing = int(input("\nHow often are you contributing?\n\n1. Weekly\n\n2. Monthly\n\n"))
+    amount_contributing = float(input("\nHow much are you contributing each time: "))
 
     if contributing == 1:
-        time = goal_amount / amount_contributing
-        print(f"It will take {time} months to save${goal_amount}")
+        time = float(goal_amount / amount_contributing)
+        print(f"\nIt will take {time:.0f} weeks to save ${goal_amount:.2f}")
+    elif contributing == 2:
+        time = float((goal_amount / amount_contributing))
+        print(f"\nIt will take {time:.0f} months to save ${goal_amount:.2f}")
 
-# compount interest
+# compound interest FIX
 def compound_interest():
-    starting_amount = input("Starting Amount: ")
-    interest_rate = input("Interest Rate Percent: ")
-    interest_rate_percentage = interest_rate / 100
-    years = input("Years Spent Compounding: ")
+    starting_amount = float(input("\nStarting Amount: "))
+    interest_rate = float(input("\nInterest Rate Percent: "))
+    interest_rate_percentage = float(interest_rate / 100)
+    years = int(input("\nYears Spent Compounding: "))
 
-    while years <= 0:
-        total_amount = starting_amount * interest_rate_percentage
-        print(f"At the end of {years} years you will have {total_amount}")
+    
+    for year in range(years):
+        total_amount = float(starting_amount * interest_rate_percentage) + total_amount
+
+    print(f"\nAt the end of {years} years you will have {total_amount}")
 
 # budget allocator
 def budget_allocator():
-# sakes price
+    amount_categories = input("How many budget categories do you have: ")
+
+    def categories(amount_categories):
+        count = 0
+        categories_list = []
+        for categories in range(amount_categories):
+            count +=1
+            category = input(f"Category {count}:")
+            categories_list.append(category)
+        
+
+# sales price
+def sales_price():
+    original_cost = float(input("\nHow much does the item originally cost: "))
+    discount = float(input("\nWhat percent is the discount: "))
+    discount = discount / 100
+    new_price = (original_cost * discount) - original_cost
+    print(f"\nThe item now costs ${abs(new_price):.2f}")
 
 # tip calculator
+def tip_calculator():
+    bill = input("How much is the bill: ")
+    percent = input("What percent of tip are you giving: ")
+    percent = percent / 100
+    tip = bill * percent
+    total_amount = bill + tip
+    print(f"The tip amount is ${tip} and your total is ${total_amount}")
 
 
 choice = starting_menu()
+
 if choice == "1":
     save_goal()
+elif choice == "2":
+    compound_interest()
+elif choice == "3":
+    budget_allocator()
+elif choice == "4":
+    sales_price()
+elif choice == "5":
+    tip_calculator()
