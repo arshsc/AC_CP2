@@ -20,26 +20,39 @@ def main_menu():
 # view
 def view(movies_list):
     print("\n")
-
     for movie, director in movies_list:
-        print(f"\n'{movie}' directed by {director}")
-
-    print("\n")
+        print(f"\n{movie} directed by {director}")
 
 # add
 def add(movies_list):
-    movie = input("\nTitle: ")
+    movie = input("\n\nTitle: ")
     director = input("\nDirected by: ")
 
     movies_list.append((movie, director))
 
-    print(f"\nSucessfully Added\n\n'{movie}' directed by {director}")
+    print(f"\nSucessfully Added\n\n{movie} directed by {director}")
 
 # remove FIX
 def remove(movies_list):
-    view(movies_list)
+    count = 0
 
-    movie_remove = input("Enter the number of the corresponding move you would like to remove: ")
+    print("\n")
+
+    for movie, director in movies_list:
+            count += 1
+            print(f"\n{count}. {movie} directed by {director}")
+
+    while True:
+        movie_remove = input("\nEnter the number of the movie you would like to remove: ").strip()
+
+        if movie_remove.isdigit() == False:
+            print("\n\nInvalid choice, please retry.\n")
+        elif movie_remove.isdigit() == True:
+            movie_remove = int(movie_remove)
+            movie_remove -= 1
+            print(f"\n\nYou have removed {movies_list[movie_remove][movie_remove]} by {movies_list[movie_remove][movie_remove+1]}")
+            movies_list.pop(movie_remove)
+            break
 
 # search FIX
 def search():
@@ -49,7 +62,6 @@ def search():
         if search_by == "1":
             searching = input("\n\nWhat is the movie's name: ")
             return searching
-        
         elif search_by == "2":
             searching = input("\n\nWhat is the director's name: ")
             return searching
@@ -84,11 +96,11 @@ def main(movies_list):
 
 
         elif choice == "5":
-            print("\nExiting...")
+            print("\nExiting...\n")
             break
         
         else:
-            print("\nInvalid choice, please retry.")
+            print("\n\nInvalid choice, please retry.")
 
 
 main(movies_list)
