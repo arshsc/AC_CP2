@@ -19,8 +19,11 @@ def main_menu():
 # view
 def view(movies_list):
     print("\n")
-    for movie, director in movies_list:
-        print(f"\n{movie} directed by {director}")
+    if movies_list:
+        for movie, director in movies_list:
+            print(f"\n{movie} directed by {director}")
+    elif not movies_list:
+            print("\nThere are no movies in the library. Please add a movie or exit.")
 
 # add
 def add(movies_list):
@@ -29,9 +32,9 @@ def add(movies_list):
 
     movies_list.append((movie, director))
 
-    print(f"\nSucessfully Added\n\n{movie} directed by {director}")
+    print(f"\nSucessfully Added: {movie} directed by {director}")
 
-# remove FIX
+# remove
 def remove(movies_list):
     count = 0
 
@@ -42,18 +45,30 @@ def remove(movies_list):
             print(f"\n{count}. {movie} directed by {director}")
 
     while True:
-        movie_remove = input("\nEnter the number of the movie you would like to remove: ").strip()
+        if movies_list:
+            movie_remove = input("\n\nEnter the number of the movie you would like to remove: ").strip()
 
-        if movie_remove.isdigit() == False:
-            print("\n\nInvalid choice, please retry.\n")
-        elif movie_remove.isdigit() == True:
-            movie_remove = int(movie_remove)
-            movie_remove -= 1
-            movie = movies_list[movie_remove][movie_remove]
-            movie_remove -= 1
-            director = movies_list[movie_remove][movie_remove]
-            print(f"\n\nYou have removed {movie} by {director}")
-            movies_list.pop(movie_remove)
+            if movie_remove.isdigit() == False:
+                print("\n\nInvalid choice, please retry.\n")
+            elif movie_remove.isdigit() == True:
+                movie_remove = int(movie_remove)
+
+                if len(movies_list) >= movie_remove:
+                    movie_remove -= 1
+
+                    for movie,director in movies_list:
+                        movie = movies_list[movie_remove][0]
+                        director = movies_list[movie_remove][1]
+
+                    print(f"\n\nYou have removed {movie} by {director}")
+                    movies_list.pop(movie_remove)
+                    break
+
+                elif len(movies_list) < movie_remove:
+                    print("\n\nInvalid choice, please retry.")
+
+        elif not movies_list:
+            print("\nThere are no movies in the library. Please add a movie or exit.")
             break
 
 # search FIX
