@@ -14,7 +14,6 @@ movies_list = [
 # main menu
 def main_menu():
     choice = input("\n\nType the number for the action you would like to perform\n\n1. View Movies\n\n2. Add a Movie\n\n3. Remove a Movie\n\n4. Search for a Movie\n\n5. Exit Movie Library\n\n")
-
     return choice
 
 # view
@@ -50,7 +49,10 @@ def remove(movies_list):
         elif movie_remove.isdigit() == True:
             movie_remove = int(movie_remove)
             movie_remove -= 1
-            print(f"\n\nYou have removed {movies_list[movie_remove][movie_remove]} by {movies_list[movie_remove][movie_remove+1]}")
+            movie = movies_list[movie_remove][movie_remove]
+            movie_remove -= 1
+            director = movies_list[movie_remove][movie_remove]
+            print(f"\n\nYou have removed {movie} by {director}")
             movies_list.pop(movie_remove)
             break
 
