@@ -17,7 +17,7 @@ def search():
 
 def genre_search():
     genre = input("\nEnter genre (e.g., \"Science Fiction\"): ").title()
-    with open("individual_projects\movie_list.csv", "r") as file:
+    with open("individual_projects/movie_list.csv", "r") as file:
         reader = csv.reader(file)
         found = False
         for row in reader:
