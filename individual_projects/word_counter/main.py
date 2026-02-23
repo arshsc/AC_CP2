@@ -16,7 +16,7 @@ def main():
             if file_path == "":
                 file_path = input("\nEnter the exact file path for your document: ").strip()
                 if file_path == "":
-                    file_path = 'individual_projects/word_counter/docs/document2.txt'
+                    file_path = 'individual_projects/word_counter/docs/document.txt'
                 elif file_path:
                     file_path = file_path
             elif file_path:

@@ -1,13 +1,6 @@
 # AC 2nd Text File Editing for Word Counter
 
 from time_handling import get_current_time
-
-def get_file_path():
-    if file_path == "":
-        new_file_path = input("\nEnter the exact file path for your document: ").strip()
-        if new_file_path == "":
-            file_path = 'individual_projects/word_counter/docs/document2.txt'
-        return file_path
     
 def update_document(file_path):
     try:
