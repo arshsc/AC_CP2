@@ -1,34 +1,66 @@
-"""# AC 2nd Text File Editing for Word Counter
+# file_handler.py
 
 from time_handling import get_current_time
-    
-def update_document():
-    try:
-        with open(file_path, "a") as file:
-            current_time = get_current_time()
-            text = file.read()
-            words = text.split()
-            word_count = len(words)
-            file.write(f"\n\n Word Count: {word_count}\nLast Updated: {current_time}")
-    except:
-        print(f"The file '{file_path}' was not found.")
 
 
-def view_document():
+def read_document(file_path):
     try:
-        print("\nDocument content: ")
         with open(file_path, "r") as file:
-            for line in file:
-                print(line, end='')
-            print("\n")
+            return file.read()
     except:
-        print(f"The file '{file_path}' was not found.")
+        print("\nFile does not exist.")
 
 
-def add_content():
-    new_content = input("\nEnter new content (press Enter twice to finish):\n")
-    try:
-        with open(file_path, "a") as file:
-            file.write("\n", new_content)
-    except:
-        print(f"The file '{file_path}' was not found.")"""
+def clean_text(text):
+    lines = text.split("\n")
+    cleaned = []
+
+    for line in lines:
+        if "Word Count:" not in line and "Last Updated:" not in line:
+            cleaned.append(line)
+
+    return "\n".join(cleaned)
+
+
+def count_words(text):
+    words = text.split()
+    return len(words)
+
+
+def update_document(file_path):
+    text = read_document(file_path)
+
+    clean = clean_text(text)
+    word_count = count_words(clean)
+    time = get_current_time()
+
+    with open(file_path, "w") as file:
+        file.write(clean)
+        file.write("\n\nWord Count: " + str(word_count))
+        file.write("\nLast Updated: " + time)
+
+    print(f"\nDocument updated. Word count: {word_count}")
+
+
+def view_document(file_path):
+    text = read_document(file_path)
+    print("\nDocument content:")
+    print(text)
+
+
+def add_content(file_path):
+    print("\nEnter new content (press Enter twice to finish):")
+
+    lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        lines.append(line)
+
+    new_text = "\n".join(lines)
+
+    with open(file_path, "a") as file:
+        file.write("\n" + new_text)
+
+    print("Content added successfully.")

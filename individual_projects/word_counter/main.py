@@ -1,51 +1,41 @@
 # AC 2nd Word Counter
 
+# libaries
 from file_handling import *
-from datetime import datetime
 
-def get_current_time():
-    current_datetime = datetime.now()
-    return current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+# variables
+default_file_path = "individual_projects/word_counter/docs/document.txt"
+file_path = ""
 
-file_content = ""
+# functions
+def menu():
+    print("\n--- Document Word Count Updater ---\n1. Update document info\n2. View document\n3. Add content to document\n4. Exit")
 
-file_path = input("Enter library file path or press Enter for default: ").strip()
-if file_path == "":
-    file_path = "individual_projects/word_counter/docs/document.txt"
+while True:
+    menu()
+    choice = input("Enter your choice (1-4): ")
 
-def file_path_to_string():
-    try:
-        with open(file_path, 'r') as file:
-            file_content = file.read()
-            return file_content
-    except:
-        print(f"Error: The file '{file_path} was not found.")
+    if choice in ["1", "2", "3"]:
+        if file_path == "":
+            user = input("\nEnter the exact file path for your document (press Enter for default): ").strip()
 
-def update_document():
-    try:
-        with open(file_path, "a") as file:
-            current_time = get_current_time()
-            text = file.read()
-            words = text.split()
-            word_count = len(words)
-            file.write(f"\n\n Word Count: {word_count}\nLast Updated: {current_time}")
-    except:
-        print(f"The file '{file_path}' was not found.")
+            if user == "":
+                file_path = default_file_path
+            else:
+                file_path = user
 
+    if choice == "1":
+        update_document(file_path)
 
+    elif choice == "2":
+        view_document(file_path)
 
-# main file
-def main_menu():
-    choice = input("\n--- Document Word Count Updater ---\n1. Update document info\n2. View document\n3. Add content to document\n4. Exit\nEnter your choice (1-4): ")
-    return choice
+    elif choice == "3":
+        add_content(file_path)
 
-def main():
-    while True:
-        choice = main_menu()
-        if choice == "1":
-            update_document()
+    elif choice == "4":
+        print("\nExiting...")
+        break
 
-main()
-
-
-
+    else:
+        print("\nInvalid choice.")
