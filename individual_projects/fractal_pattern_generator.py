@@ -45,6 +45,7 @@ def draw(t, length, depth):
 def setup_turtle(color):
     t = turtle.Turtle()
     t.pensize(3)
+    t.speed(15)
     t.color(color)
 
 def main():
@@ -69,7 +70,7 @@ def main():
             turtle.bye()
             break
         else:
-            pass
+            turtle.exitonclick()
 
 main()
 turtle.done()
