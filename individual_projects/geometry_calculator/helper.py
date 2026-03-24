@@ -92,6 +92,8 @@ def formula_guide(valid_shapes):
 
         if shape_type not in ["1", "2", "3", "4"]:
             print("\nInvalid Shape")
+        elif shape_type == "Exit":
+            break
         else:
             if shape_type == "1":
                 print("\nFormulas for a Circle:")
