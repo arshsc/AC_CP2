@@ -1,1 +1,2 @@
-number,base,height
+side1,side2,side3,height,area,perimeter
+5.0,5.0,3.0,5.0,12.5,13.0
