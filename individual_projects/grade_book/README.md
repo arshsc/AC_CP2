@@ -1,6 +1,7 @@
 # Grade Book
 ***
-![Image of running project](relative to image in my repository)
+<img width="268" height="255" alt="image" src="https://github.com/user-attachments/assets/8c2125b4-b9c5-43f1-b82f-a009506f9024" />
+
 This GradeBook project is a simple text-based program written in Python that allows users to manage student information and grades. It uses a CSV file to store student records, so data is saved between sessions. Users can add new students, enter grades, view individual student records, view all students, and get a class summary with averages and letter grades. The program is designed to be user-friendly and easy to navigate with a numbered menu system.
 
 ## How to use the Project
