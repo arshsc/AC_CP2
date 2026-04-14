@@ -2,7 +2,7 @@
 
 # import needed libraries and functions
 import turtle
-from individual_projects.geometry_calculator.helper import *
+from helper import *
 
 # main function to run the program
 def main():
