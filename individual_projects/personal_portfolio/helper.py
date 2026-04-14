@@ -111,6 +111,7 @@ class StartPage(tk.Frame):
             self.process.terminate()
             self.process = None
 
+        # couldn't figure out another way to import the files
         if self.selected_project == "fractal":
             self.process = subprocess.Popen(["python", "individual_projects/fractal_pattern_generator/main.py"])
 
