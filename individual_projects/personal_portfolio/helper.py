@@ -101,9 +101,7 @@ class StartPage(tk.Frame):
     # method to select a project, which updates the selected_project variable and displays project information in the project_info_paragraph label
     def select_project(self, project_name, display_name, description):
         self.selected_project = project_name
-        self.project_info_paragraph['text'] = (
-            f"Project Name:\n{display_name}\n\n"
-            f"Project Description:\n{description}")
+        self.project_info_paragraph['text'] = (f"Project Name:\n{display_name}\n\nProject Description:\n{description}")
 
     # method to run the selected project, which checks which project is selected and runs the corresponding main.py file using subprocess.Popen. If a project is already running, it terminates the process before starting a new one. If no project is selected, it prompts the user to select a project first.
     def run_project(self):
